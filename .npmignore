@@ -1,0 +1,11 @@
+.github
+docs
+agents
+scripts
+test
+
+typedoc.json
+tsconfig.json
+.cspell.config.yaml
+.prettierrc
+pnpm-lock.yaml
