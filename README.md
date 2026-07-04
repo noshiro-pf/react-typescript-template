@@ -1,23 +1,19 @@
-# typescript-template
+# react-typescript-template
 
 <!--
-[![npm version](https://img.shields.io/npm/v/typescript-template.svg)](https://www.npmjs.com/package/typescript-template)
-[![npm downloads](https://img.shields.io/npm/dm/typescript-template.svg)](https://www.npmjs.com/package/typescript-template)
-[![License](https://img.shields.io/npm/l/typescript-template.svg)](./LICENSE)
-[![codecov](https://codecov.io/gh/noshiro-pf/typescript-template/branch/main/graph/badge.svg?token=********)](https://codecov.io/gh/noshiro-pf/typescript-template)
+[![codecov](https://codecov.io/gh/noshiro-pf/react-typescript-template/branch/main/graph/badge.svg?token=********)](https://codecov.io/gh/noshiro-pf/react-typescript-template)
  -->
 
-Template Repository for TypeScript
+Template Repository for React & TypeScript Applications
 
 ## Key Features
 
-- 🛡️ Strict ESLint setup via [eslint-config-typed](https://github.com/noshiro-pf/eslint-config-typed), with `jiti` enabling a TypeScript `eslint.config.mts`.
+- 🛡️ Strict ESLint setup via [eslint-config-typed](https://github.com/noshiro-pf/eslint-config-typed) (`eslintConfigForTypeScript` + `eslintConfigForReact`), with `jiti` enabling a TypeScript `eslint.config.mts`.
 - 📝 Built-in spelling and formatting checks with cspell / markdownlint / Prettier.
-- 🧪 Vitest for unit testing with coverage; workflows included to upload results to [codecov.io](https://about.codecov.io/).
+- 🧪 Vitest (jsdom environment) for unit testing with coverage; workflows included to upload results to [codecov.io](https://about.codecov.io/).
 - 🔄 CI runs lint / type-check / test, enforces no post-Prettier diffs, and sends coverage to Codecov.
-- 🏗️ `build` generates per-directory `index.mts`, removes unused runtime code with Rollup, and runs type checking.
-- 🚀 [semantic-release](https://github.com/semantic-release/semantic-release) triggers on merges to `main`, handling versioning, changelog updates, npm publish, and GitHub Releases.
-- 📚 [TypeDoc](https://typedoc.org/index.html) generates docs and auto-deploys them to GitHub Pages.
+- 🏗️ `build` generates per-directory `index.mts`, bundles the app with [Vite](https://vite.dev/), and runs type checking.
+- 🌐 GitHub Actions builds the app with Vite and auto-deploys it to GitHub Pages on merges to `main`.
 - 📦 `pnpm` provides strict dependency management (`pnpm-lock.yaml` included).
 - 📦 Dependabot auto-creates PRs for npm dependencies and GitHub Actions updates.
 - 🔐 [github-settings-as-code](https://github.com/noshiro-pf/github-settings-as-code) tracks repository settings and rulesets as code, detecting changes via diffs.
@@ -26,7 +22,7 @@ Template Repository for TypeScript
 <!--
 ## Documentation
 
-- API reference: <https://noshiro-pf.github.io/typescript-template/>
+- Live demo: <https://noshiro-pf.github.io/react-typescript-template/>
 -->
 
 ## Local Setup
@@ -37,8 +33,7 @@ git submodule update --init --recursive
 pnpm i
 ```
 
-- Rename the part that says "typescript-template".
-- Remove `--dry-run` from `.github/workflows/release.yml`
+- Rename the part that says "react-typescript-template" (in `package.json`, `README.md`, `index.html`, etc).
 - Update README.md
 - Run `pnpm run check-all` and fix errors if exist.
 
@@ -47,12 +42,6 @@ pnpm i
 1. Copy `.env.example` to `.env` and set Personal Access Token with `repo` access.
 2. Run `pnpm run gh:apply-all` to update GitHub Repository Settings.
 3. Set Actions secrets on the GUI settings page (<https://github.com/{owner}/{repo}/settings/secrets/actions>).
-    - `NPM_TOKEN`
-        - Open <https://www.npmjs.com/settings/{your-user-id}/tokens> -> Generate New Token -> Classic Token -> Select `Automation` and generate.
-        - Required for semantic-release to run npm publish
-    - `SEMANTIC_RELEASE_GIT_PERMISSION_BOT_PRIVATE_KEY`
-        - <https://github.com/apps/semantic-release-git-permission> -> App settings -> Generate a private key
-        - Required for `@semantic-release/git` to perform a git commit to the main branch
     - `PERSONAL_ACCESS_TOKEN`
         - The same value as `1.`
         - Required for `.github/workflows/backup-repository-settings.yml` to run

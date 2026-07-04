@@ -1,7 +1,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { type UnknownResult, unknownToString } from 'ts-data-forge';
-import { $, assertPathExists, Result } from 'ts-repo-utils';
+import { $, Result } from 'ts-repo-utils';
 import { projectRootPath } from '../project-root-path.mjs';
 
 const distDir = path.resolve(projectRootPath, './dist');
@@ -49,58 +49,13 @@ const build = async (skipCheck: boolean): Promise<void> => {
   }
 
   await logStep({
-    startMessage: 'Building with Rollup',
-    action: async () => {
-      const rollupConfig = path.resolve(
-        projectRootPath,
-        './configs/rollup.config.ts',
-      );
-
-      await assertPathExists(rollupConfig, 'Rollup config');
-
-      await runCmdStep(
-        [
-          'rollup',
-          `--config ${rollupConfig}`,
-          '--configPlugin typescript',
-          '--configImportAttributesKey with',
-        ].join(' '),
-        'Rollup build failed',
-      );
-    },
-    successMessage: 'Rollup build completed',
-  });
-
-  await logStep({
-    startMessage: 'Generating dist/types.d.mts',
-    action: async () => {
-      const content = "export * from './entry-point.mjs';\n";
-
-      const typesFile = path.resolve(distDir, 'types.d.mts');
-
-      await runStep(
-        // eslint-disable-next-line security/detect-non-literal-fs-filename
-        Result.fromPromise(fs.writeFile(typesFile, content)),
-        'Failed to generate dist/types.d.mts',
-      );
-    },
-    successMessage: 'Generated dist/types.d.mts',
-  });
-
-  await logStep({
-    startMessage: 'Generating dist TypeScript config',
-    action: async () => {
-      const configContent = JSON.stringify({ include: ['.'] });
-
-      const configFile = path.resolve(distDir, 'tsconfig.json');
-
-      await runStep(
-        // eslint-disable-next-line security/detect-non-literal-fs-filename
-        Result.fromPromise(fs.writeFile(configFile, configContent)),
-        'Failed to generate tsconfig',
-      );
-    },
-    successMessage: 'Generated dist/tsconfig.json',
+    startMessage: 'Building with Vite',
+    action: () =>
+      runCmdStep(
+        'vite build --config ./configs/vite.config.mts',
+        'Vite build failed',
+      ),
+    successMessage: 'Vite build completed',
   });
 
   console.log('✅ Build completed successfully!\n');

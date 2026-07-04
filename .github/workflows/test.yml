@@ -29,7 +29,6 @@ jobs:
         command:
           - test
           - test:cov
-          - test:browser
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -65,22 +64,8 @@ jobs:
         if: steps.check_diff_type.outputs.should_run != 'true'
         run: exit 0
 
-      - name: Install Playwright Browsers
-        if: matrix.command == 'test:browser'
-        run: pnpm exec playwright install chromium
-
       - name: Run "${{ matrix.command }}"
-        if: matrix.command != 'test:browser'
         run: pnpm run ${{ matrix.command }}
-
-      # Source - https://stackoverflow.com/a/71583518
-      - name: Run 'test:browser' with retry
-        if: matrix.command == 'test:browser'
-        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
-        with:
-          timeout_minutes: 10
-          max_attempts: 2
-          command: pnpm run ${{ matrix.command }}
 
       - name: Upload coverage reports to Codecov
         if: matrix.command == 'test:cov'
