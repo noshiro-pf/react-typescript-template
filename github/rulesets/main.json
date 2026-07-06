@@ -1,5 +1,5 @@
 {
-  "id": 6233324,
+  "id": 18524587,
   "name": "main",
   "target": "branch",
   "enforcement": "active",
@@ -58,10 +58,6 @@
             "integration_id": 15368
           },
           {
-            "context": "style-check (doc)",
-            "integration_id": 15368
-          },
-          {
             "context": "style-check (fmt:full)",
             "integration_id": 15368
           },
@@ -79,10 +75,6 @@
           },
           {
             "context": "test (test)",
-            "integration_id": 15368
-          },
-          {
-            "context": "test (test:browser)",
             "integration_id": 15368
           },
           {

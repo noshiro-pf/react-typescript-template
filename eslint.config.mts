@@ -1,16 +1,18 @@
 import {
   defineKnownRules,
   eslintConfigForNodeJs,
+  eslintConfigForReact,
   eslintConfigForTypeScript,
   eslintConfigForVitest,
   type FlatConfig,
+  withDefaultOption,
 } from 'eslint-config-typed';
 
 const thisDir = import.meta.dirname;
 
 export default [
   {
-    ignores: ['.eslintrc.cjs', 'docs/**', 'agents/**'],
+    ignores: ['.eslintrc.cjs', 'agents/**', 'dist'],
   },
   ...eslintConfigForTypeScript({
     tsconfigRootDir: thisDir,
@@ -19,9 +21,24 @@ export default [
   }),
 
   eslintConfigForVitest(),
+  ...eslintConfigForReact(['src/**']),
 
   {
-    files: ['test/**/*.mts', '**/*.test.mts'],
+    files: ['src/**'],
+    rules: defineKnownRules({
+      'react-coding-style/ban-use-imperative-handle-hook': 'error',
+      'react-coding-style/component-name': withDefaultOption('error'),
+      'react-coding-style/component-var-type-annotation': 'error',
+      'react-coding-style/import-style': withDefaultOption('error'),
+      'react-coding-style/props-type-annotation-style': 'error',
+      'react-coding-style/react-memo-props-argument-name': 'error',
+      'react-coding-style/react-memo-type-parameter': 'error',
+      'react-coding-style/use-memo-hook-style': 'error',
+    }),
+  },
+
+  {
+    files: ['**/*.test.mts', '**/*.test.tsx'],
     rules: defineKnownRules({
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-duplicate-type-constituents': 'off',
@@ -56,26 +73,7 @@ export default [
   {
     files: ['src/**'],
     rules: defineKnownRules({
-      'import-x/no-unused-modules': [
-        'error',
-        { unusedExports: true, ignoreExports: ['src/entry-point.mts'] },
-      ],
-    }),
-  },
-  {
-    files: ['src/entry-point.mts'],
-    rules: defineKnownRules({
-      '@typescript-eslint/no-restricted-imports': 'off',
-    }),
-  },
-
-  {
-    files: ['samples/**'],
-    rules: defineKnownRules({
-      'import-x/no-extraneous-dependencies': 'off',
-      'import-x/no-internal-modules': 'off',
-      '@typescript-eslint/no-unsafe-call': 'off',
-      'functional/immutable-data': 'off',
+      'import-x/no-unused-modules': ['error', { unusedExports: true }],
     }),
   },
 ] satisfies readonly FlatConfig[];

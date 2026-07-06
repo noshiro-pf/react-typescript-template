@@ -1,22 +1,15 @@
 {
   "extends": [
     "./configs/tsconfig/tsconfig.type-check.json",
+    "./configs/tsconfig/tsconfig.react-emotion.json",
     "./configs/tsconfig/tsconfig.vite.json"
   ],
-  "compilerOptions": {
-    "paths": {
-      "typescript-template": ["./src/entry-point.mts"]
-    }
-  },
   "include": [
     "./src",
-    "./test",
-    "./samples",
     "./scripts",
     "./configs",
     "./.eslintrc.cjs",
     "./eslint.config.mts",
-    "./release.config.js",
     "./.markdownlint-cli2.mjs"
   ]
 }

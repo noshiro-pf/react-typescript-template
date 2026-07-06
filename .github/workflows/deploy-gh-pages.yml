@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Deploy App
 
 on:
   push:
@@ -39,13 +39,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate docs
-        run: pnpm run doc
+      - name: Build app
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: docs
+          path: dist
 
   deploy:
     environment:
