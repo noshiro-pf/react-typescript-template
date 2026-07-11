@@ -7,6 +7,20 @@ import { projectRootPath } from '../project-root-path.mjs';
 const distDir = path.resolve(projectRootPath, './dist');
 
 /**
+ * The native TypeScript compiler (TypeScript >= 7). It is installed under the
+ * alias "typescript-native" because the "typescript" package must stay on 6.x
+ * for tools that require the JS compiler API (typescript-eslint via
+ * eslint-config-typed, prettier-plugin-organize-imports, ...), which
+ * TypeScript 7 no longer provides. Invoked via an explicit path because both
+ * packages declare a `tsc` bin and the winner of the
+ * `node_modules/.bin/tsc` conflict is not guaranteed.
+ */
+const nativeTsc = path.resolve(
+  projectRootPath,
+  './node_modules/typescript-native/bin/tsc',
+);
+
+/**
  * Builds the entire project.
  */
 const build = async (skipCheck: boolean): Promise<void> => {
@@ -43,7 +57,8 @@ const build = async (skipCheck: boolean): Promise<void> => {
 
     await logStep({
       startMessage: 'Running type checking',
-      action: () => runCmdStep('tsc --noEmit', 'Type checking failed'),
+      action: () =>
+        runCmdStep(`node ${nativeTsc} --noEmit`, 'Type checking failed'),
       successMessage: 'Type checking passed',
     });
   }
