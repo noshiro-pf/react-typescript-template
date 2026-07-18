@@ -82,8 +82,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1(dedent@1.7.2(babel-plugin-macros@3.1.0))(ts-repo-utils@10.1.2(prettier@3.9.4)(typescript@6.0.3))(typescript@6.0.3)
       ts-data-forge:
-        specifier: 7.1.0
-        version: 7.1.0(typescript@6.0.3)
+        specifier: 9.0.0
+        version: 9.0.0(typescript@6.0.3)
       ts-repo-utils:
         specifier: 10.1.2
         version: 10.1.2(prettier@3.9.4)(typescript@6.0.3)
@@ -3443,8 +3443,8 @@ packages:
     peerDependencies:
       typescript: '>=4.8'
 
-  ts-data-forge@7.1.0:
-    resolution: {integrity: sha512-dcBdvyaZ8m3JeD6B5MrE3Gtr9Fg641/k+Om5ZudBytlp+N+67Wr1xiYw936n0YZ4KRnN1NRlzw84rdnPmOfOXA==}
+  ts-data-forge@9.0.0:
+    resolution: {integrity: sha512-RQRengEO8QbSRnp9O79XJ9VXaxo7xBumLjZiai0zF0QXomMghjFY5sOsDN4wDUo+s8HZw9gboral5pfSFKA+Eg==}
     engines: {node: '>=22.22.2', pnpm: '>=9.0.0'}
     peerDependencies:
       typescript: '>=4.8'
@@ -3474,6 +3474,10 @@ packages:
 
   ts-type-forge@4.0.0:
     resolution: {integrity: sha512-7O9BFH3cxfmr5HR7UUcQ8DiDC/zr6TS1aYfbe8ziyLU3MkXeeE4fs28i6L7ZddnlTQkg1ZOTa9IikJ2aHtg1mQ==}
+    engines: {node: '>=22.22.2', pnpm: '>=9.0.0'}
+
+  ts-type-forge@5.0.0:
+    resolution: {integrity: sha512-+7t3WkIDz5IsAhPR7r0zGhWjqccRRsbiPC2F0d3hTl911GttOACd45PLIzoHha10384qEHNGIl4yi4kTgcQM2w==}
     engines: {node: '>=22.22.2', pnpm: '>=9.0.0'}
 
   tslib@1.14.1:
@@ -7326,10 +7330,10 @@ snapshots:
       ts-type-forge: 3.2.0
       typescript: 6.0.3
 
-  ts-data-forge@7.1.0(typescript@6.0.3):
+  ts-data-forge@9.0.0(typescript@6.0.3):
     dependencies:
       '@sindresorhus/is': 8.1.0
-      ts-type-forge: 4.0.0
+      ts-type-forge: 5.0.0
       typescript: 6.0.3
 
   ts-declaration-location@1.0.7(typescript@6.0.3):
@@ -7369,6 +7373,8 @@ snapshots:
   ts-type-forge@3.2.0: {}
 
   ts-type-forge@4.0.0: {}
+
+  ts-type-forge@5.0.0: {}
 
   tslib@1.14.1: {}
 
