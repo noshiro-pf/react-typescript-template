@@ -42,9 +42,6 @@ importers:
       cspell:
         specifier: 10.0.1
         version: 10.0.1
-      dedent:
-        specifier: 1.7.2
-        version: 1.7.2(babel-plugin-macros@3.1.0)
       eslint:
         specifier: 9.39.4
         version: 9.39.4(jiti@2.7.0)
@@ -5389,6 +5386,7 @@ snapshots:
   dedent@1.7.2(babel-plugin-macros@3.1.0):
     optionalDependencies:
       babel-plugin-macros: 3.1.0
+    optional: true
 
   deep-is@0.1.4: {}
 
