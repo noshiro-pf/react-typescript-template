@@ -8,7 +8,6 @@
     "./src",
     "./scripts",
     "./configs",
-    "./.eslintrc.cjs",
     "./eslint.config.mts",
     "./.markdownlint-cli2.mjs"
   ]

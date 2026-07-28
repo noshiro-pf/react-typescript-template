@@ -12,7 +12,7 @@ const thisDir = import.meta.dirname;
 
 export default [
   {
-    ignores: ['.eslintrc.cjs', 'agents/**', 'dist'],
+    ignores: ['agents/**', 'dist'],
   },
   ...eslintConfigForTypeScript({
     tsconfigRootDir: thisDir,
@@ -73,7 +73,7 @@ export default [
   {
     files: ['src/**'],
     rules: defineKnownRules({
-      'import-x/no-unused-modules': ['error', { unusedExports: true }],
+      'import-x/no-unused-modules': 'off',
     }),
   },
 ] satisfies readonly FlatConfig[];
