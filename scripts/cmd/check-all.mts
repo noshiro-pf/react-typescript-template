@@ -50,6 +50,12 @@ const checkAll = async (): Promise<void> => {
     successMessage: 'Build succeeded',
   });
 
+  await logStep({
+    startMessage: 'Formatting code',
+    action: () => runCmdStep('pnpm run fmt:diff', 'File formatting failed'),
+    successMessage: 'Code formatted',
+  });
+
   console.log('✅ All checks completed successfully!\n');
 };
 
