@@ -31,7 +31,7 @@
     "codemod:full:readonly": "convert-to-readonly '{src,scripts}/**/*.{mts,tsx}'",
     "codemod:uncommitted:as-const": "append-as-const --uncommitted '{src,scripts}/**/*.{mts,tsx}'",
     "codemod:uncommitted:readonly": "convert-to-readonly --uncommitted '{src,scripts}/**/*.{mts,tsx}'",
-    "cspell": "cspell \"{**/*,.changeset/**/*,.github/**/*}\" --gitignore --gitignore-root ./ --no-progress",
+    "cspell": "cspell \"{**,.changeset/**/*,.github/**/*}\" --gitignore --gitignore-root ./ --no-progress",
     "dev": "pnpm run z:vite",
     "fmt": "format-uncommitted",
     "fmt:diff": "format-diff-from origin/main",
