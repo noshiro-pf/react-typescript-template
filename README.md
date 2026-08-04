@@ -47,19 +47,8 @@ pnpm i
         - Required for `.github/workflows/backup-repository-settings.yml` to run
 4. Set Dependabot secrets on the GUI settings page (<https://github.com/{owner}/{repo}/settings/secrets/dependabot>).
     - `DEPENDABOT_AUTO_MERGE_BOT_PRIVATE_KEY`
-        - <https://github.com/apps/dependabot-auto-merge-permissions> -> App settings -> Generate a private key
+        - <https://github.com/apps/noshiro-dependabot-auto-merge-bot> -> App settings -> Generate a private key
     - `PERSONAL_ACCESS_TOKEN`
         - The same value as `1.`
         - Required for `.github/workflows/backup-repository-settings.yml` to run
 5. Go to [Pages](https://github.com/{owner}/{repo}/settings/pages) and change Build and deployment > Source to be "Github Actions".
-
-## Syncing AGENTS.md Updates
-
-1. Update `AGENTS.md` in the common repository (`common-agent-config`)
-2. Update the submodule in each project
-
-```bash
-git submodule update --remote --merge
-git add agents/common
-git commit -m "Update AGENTS.md"
-```
