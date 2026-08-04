@@ -7,6 +7,9 @@ import {
   type FlatConfig,
   withDefaultOption,
 } from 'eslint-config-typed';
+import { eslintPluginTsDataForge } from 'eslint-plugin-ts-data-forge';
+import { eslintPluginTsFortress } from 'eslint-plugin-ts-fortress';
+import { eslintPluginTsTypeForge } from 'eslint-plugin-ts-type-forge';
 
 const thisDir = import.meta.dirname;
 
@@ -19,6 +22,10 @@ export default [
     tsconfigFileName: './tsconfig.json',
     packageDirs: [thisDir],
   }),
+
+  eslintPluginTsTypeForge.configs.recommended,
+  eslintPluginTsDataForge.configs.recommended,
+  eslintPluginTsFortress.configs.recommended,
 
   eslintConfigForVitest(),
 
