@@ -21,6 +21,7 @@ export default [
   }),
 
   eslintConfigForVitest(),
+
   ...eslintConfigForReact(['src/**']),
 
   {
